@@ -20,6 +20,8 @@ def create_app():
 
     from app.auth import bp as auth_bp
     app.register_blueprint(auth_bp)
+    from app.bullet import bp as bullet_bp
+    app.register_blueprint(bullet_bp)
 
     return app
 
