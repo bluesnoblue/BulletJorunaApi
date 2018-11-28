@@ -1,20 +1,18 @@
 from app import db
 from app.auth import bp
 from flask_jwt import jwt_required,current_identity
-from flask import jsonify,abort,request
+from flask import jsonify,request
 from app.models import User
 
 
 @bp.route('/users', methods=['POST'])
 def register():
-    username = request.form.get('username')
-    password = request.form.get('password')
+    username = request.json.get('username')
+    password = request.json.get('password')
     if username is None or password is None:
-        print('test1')
-        abort(400)
+        return jsonify({'error': '请输入用户名和密码'}), 499
     if User.query.filter_by(username=username).first() is not None:
-        print(User.query.filter_by(username=username).first())
-        abort(400)
+        return jsonify({'error': '用户已注册'}) , 499
     user = User(username)
     user.set_password(password)
     db.session.add(user)
