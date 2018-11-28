@@ -1,10 +1,7 @@
 from app import db
 from app.user import bp
 from app.models import User,Token
-from flask import request, abort, jsonify, url_for
-from flask_httpauth import HTTPBasicAuth
-
-auth = HTTPBasicAuth()
+from flask import request, abort, jsonify
 
 
 @bp.route('/users', methods=['POST'])
