@@ -1,11 +1,11 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_jwt import JWT
 from config import Config
 
 db = SQLAlchemy()
 migrate = Migrate()
-
 
 def create_app():
     app = Flask(__name__)
@@ -14,8 +14,11 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
 
-    from app.user import bp as user_bp
-    app.register_blueprint(user_bp)
+    from app.auth.auth import authenticate, identity
+    jwt = JWT(app, authenticate, identity)
+
+    from app.auth import bp as auth_bp
+    app.register_blueprint(auth_bp)
 
     return app
 
