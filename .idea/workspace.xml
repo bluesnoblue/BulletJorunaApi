@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8ca7aeef-e893-4f07-844f-a2ca30f66d5d" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/user/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/user/auth.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/user/routes.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/versions/2a49a63ef88c_update_token_table.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/versions/7fccc21a79b9_token_table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/BulletJorunaApi.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/BulletJorunaApi.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.db" beforeDir="false" afterPath="$PROJECT_DIR$/app.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bullet_joruna_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/bullet_joruna_api.py" afterDir="false" />
-    </list>
+    <list default="true" id="8ca7aeef-e893-4f07-844f-a2ca30f66d5d" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +12,7 @@
     <session id="-1136524057">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.18" value="1" />
           <entry key="project.opened" value="2" />
@@ -35,12 +21,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Python Console" value="124" />
-          <entry key="py" value="2189" />
+          <entry key="py" value="2194" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="2313" />
+          <entry key="Python" value="2318" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -63,8 +49,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="33" column="23" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
+            <state relative-caret-position="207">
+              <caret line="9" column="12" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="12" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -75,11 +61,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/user/routes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="43" column="27" lean-forward="true" selection-start-line="43" selection-start-column="27" selection-end-line="43" selection-end-column="38" />
+            <state relative-caret-position="460">
+              <caret line="38" selection-start-line="38" selection-end-line="44" selection-end-column="40" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
-                <marker date="1543339678182" expanded="true" signature="1615:1620" ph="..." />
+                <marker date="1543339838403" expanded="true" signature="1493:1498" ph="..." />
               </folding>
             </state>
           </provider>
@@ -295,7 +281,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="32" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="32" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.09105263" />
@@ -303,7 +289,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.54525626" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.40172786" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.10583153" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -389,8 +375,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="33" column="23" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
+        <state relative-caret-position="207">
+          <caret line="9" column="12" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="12" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -399,11 +385,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/user/routes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="43" column="27" lean-forward="true" selection-start-line="43" selection-start-column="27" selection-end-line="43" selection-end-column="38" />
+        <state relative-caret-position="460">
+          <caret line="38" selection-start-line="38" selection-end-line="44" selection-end-column="40" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <marker date="1543339678182" expanded="true" signature="1615:1620" ph="..." />
+            <marker date="1543339838403" expanded="true" signature="1493:1498" ph="..." />
           </folding>
         </state>
       </provider>
