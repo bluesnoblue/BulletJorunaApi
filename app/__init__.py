@@ -7,6 +7,7 @@ from config import Config
 db = SQLAlchemy()
 migrate = Migrate()
 
+
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
@@ -19,6 +20,8 @@ def create_app():
 
     from app.auth import bp as auth_bp
     app.register_blueprint(auth_bp)
+    from app.bullet import bp as bullet_bp
+    app.register_blueprint(bullet_bp)
 
     return app
 from app import models
