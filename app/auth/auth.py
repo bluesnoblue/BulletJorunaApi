@@ -4,7 +4,7 @@ from flask import abort
 def authenticate(username, password):
     user = User.query.filter_by(username=username).first()
     if user is None or not user.check_password(password):
-        abort(400)
+        abort(401)
     return user
 
 def identity(payload):

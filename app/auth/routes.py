@@ -22,7 +22,7 @@ def register():
 
 @bp.route('/user', methods=['GET'])
 @jwt_required()
-def current_user():
+def get_profile():
     return jsonify({
         'id': current_identity.id,
         'name': current_identity.username,

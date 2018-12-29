@@ -2,11 +2,12 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_jwt import JWT
+from flask_restful import Api
 from config import Config
 
 db = SQLAlchemy()
 migrate = Migrate()
-
+api = Api()
 
 def create_app():
     app = Flask(__name__)
@@ -23,5 +24,14 @@ def create_app():
     from app.bullet import bp as bullet_bp
     app.register_blueprint(bullet_bp)
 
+    from app.resource.routes import ResourcesTest, ResourceTest
+    api.add_resource(ResourcesTest, '/resources')
+    api.add_resource(ResourceTest, '/resource/<resource_id>')
+
+    from app.resource import bp as res_bp
+    api.init_app(res_bp)
+    app.register_blueprint(res_bp)
+
     return app
+
 from app import models
