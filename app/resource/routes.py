@@ -5,7 +5,6 @@ from flask_jwt import jwt_required, current_identity
 
 class ResourcesTest(Resource):
 
-
     def get(self):
         return jsonify({'message': 'get ResourcesTest'})
 
