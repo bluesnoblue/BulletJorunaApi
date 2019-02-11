@@ -1,6 +1,7 @@
 from flask import jsonify
 from flask_restful import Resource
 from flask_jwt import jwt_required, current_identity
+from app.public.permission import *
 
 
 class ResourcesTest(Resource):
@@ -11,9 +12,11 @@ class ResourcesTest(Resource):
     def post(self):
         return jsonify({'message': 'post ResourcesTest'})
 
+
 class ResourceTest(Resource):
 
     @jwt_required()
+    @permission_required(Permission.ASSIGN)
     def get(self,resource_id):
         return jsonify({'message': 'get ResourceTest%s'%resource_id,
                         'user':current_identity.username})

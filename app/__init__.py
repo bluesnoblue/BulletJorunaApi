@@ -3,11 +3,20 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_jwt import JWT
 from flask_restful import Api
+from flask_admin import Admin
+from flask_login import LoginManager
+from app.admin.views import MyView,UserView
+
 from config import Config
 
 db = SQLAlchemy()
 migrate = Migrate()
 api = Api()
+
+admin = Admin(name='后台管理系统',template_mode='bootstrap3')
+login = LoginManager()
+login.login_view = 'auth.login'
+login.login_message = 'Please log in to access this page.'
 
 def create_app():
     app = Flask(__name__)
@@ -15,6 +24,8 @@ def create_app():
 
     db.init_app(app)
     migrate.init_app(app, db)
+    admin.init_app(app)
+    login.init_app(app)
 
     from app.auth.auth import authenticate, identity
     jwt = JWT(app, authenticate, identity)
@@ -35,3 +46,6 @@ def create_app():
     return app
 
 from app import models
+
+admin.add_view(UserView(models.User, db.session, name='用户'))
+admin.add_view(MyView(models.AdminUser, db.session, name='管理员'))

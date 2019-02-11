@@ -1,14 +1,37 @@
 from app import db
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
+from datetime import datetime
 
+class AdminUser(db.Model,UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(16), index=True, unique=True)
+    account = db.Column(db.String(16), index=True, unique=True)
+    description = db.Column(db.String(120), index=True, unique=True)
+    password_hash  = db.Column(db.String(128))
+    created_at = db.Column(db.DateTime,default=datetime.now)
 
-class User(db.Model):
+    def __init__(self, username, account, password):
+        self.username = username
+        self.account = account
+        self.set_password(password)
+
+    def __repr__(self):
+        return '<AdminUser %s>' % self.account
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
+class User(db.Model,UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(16), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     mobile = db.Column(db.String(11), index=True, unique=True)
     password_hash = db.Column(db.String(128))
-    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+    role_id = db.Column(db.Integer, db.ForeignKey('role.id'))
 
     def __init__(self, username, **kwargs):
         self.username = username
@@ -24,6 +47,12 @@ class User(db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+    def can(self,permissions):
+        return self.role is None and (self.role.permissions & permissions) == permissions
+
+    def is_administrator(self):
+        return self.can(Permission.ADMINISTRATOR)
 
 
 class Bullet(db.Model):
@@ -70,7 +99,7 @@ class Role(db.Model):
     name = db.Column(db.String(64), unique=True)
     permissions = db.Column(db.Integer)
     default = db.Column(db.Boolean,default=False,index= True)
-    users = db.relationship('User',beackref='role',lazy='dynamic')
+    users = db.relationship('User',backref='role',lazy='dynamic')
 
     @staticmethod
     def insert_role():
