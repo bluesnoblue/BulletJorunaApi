@@ -5,7 +5,7 @@ from flask_jwt import JWT
 from flask_restful import Api
 from flask_admin import Admin
 from flask_login import LoginManager
-from app.admin.views import MyView,UserView
+from app.admin.views import AdminUserView,UserView,MyView
 
 from config import Config
 
@@ -47,5 +47,6 @@ def create_app():
 
 from app import models
 
-admin.add_view(UserView(models.User, db.session, name='用户'))
-admin.add_view(MyView(models.AdminUser, db.session, name='管理员'))
+admin.add_view(MyView(name='页面1',category = '菜单项目'))
+admin.add_view(UserView(models.User, db.session, name='用户列表',category = '用户管理'))
+admin.add_view(AdminUserView(models.AdminUser, db.session, name='管理员'))

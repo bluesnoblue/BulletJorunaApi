@@ -16,7 +16,7 @@ class ResourcesTest(Resource):
 class ResourceTest(Resource):
 
     @jwt_required()
-    @permission_required(Permission.ASSIGN)
+    # @permission_required(Permission.ASSIGN)
     def get(self,resource_id):
         return jsonify({'message': 'get ResourceTest%s'%resource_id,
                         'user':current_identity.username})
