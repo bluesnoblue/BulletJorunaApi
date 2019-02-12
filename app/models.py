@@ -98,9 +98,9 @@ class Role(db.Model):
     __tablename__ = 'roles'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(32), index=True,nullable=True)
-    permission = db.relationship('Permission', secondary='RolePermissons', backref='Role')
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    Permission_id = db.relationship('Permission', secondary='RolePermissons')
+    permission_id = db.relationship('Permission', secondary='role_permissions', backref='Role')
+
     def __repr__(self):
         return '<Role %s>'%self.name
 
