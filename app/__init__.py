@@ -2,7 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_jwt import JWT
-from flask_restful import Api
+# from flask_restful import Api
 from flask_admin import Admin
 from flask_login import LoginManager
 from app.admin.views import AdminUserView,UserView,MyView
@@ -11,7 +11,7 @@ from config import Config
 
 db = SQLAlchemy()
 migrate = Migrate()
-api = Api()
+# api = Api()
 
 admin = Admin(name='后台管理系统',template_mode='bootstrap3')
 login = LoginManager()
@@ -35,25 +35,9 @@ def create_app():
     from app.bullet import bp as bullet_bp
     app.register_blueprint(bullet_bp)
 
-    from app.resource import bp as res_bp
-    from app.resource.routes import ResourcesTest, ResourceTest
-    api.init_app(res_bp)
-    api.add_resource(ResourcesTest, '/resources')
-    api.add_resource(ResourceTest, '/resource/<resource_id>')
-    app.register_blueprint(res_bp)
+    from app.api import api
+    app.register_blueprint(api)
 
-    from app.permission import bp as permission_bp
-    from app.permission.routes import Permissions
-    api.init_app(permission_bp)
-    api.add_resource(Permissions, '/permissions')
-    app.register_blueprint(permission_bp)
-
-    from app.role import bp as role_bp
-    from app.role.routes import Roles,Role
-    api.init_app(role_bp)
-    api.add_resource(Roles, '/roles')
-    api.add_resource(Role, '/role/<role_id>')
-    app.register_blueprint(role_bp)
 
     return app
 

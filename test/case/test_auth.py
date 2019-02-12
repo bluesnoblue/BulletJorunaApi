@@ -29,13 +29,13 @@ class TestAuth(unittest.TestCase):
         data = {'username': 'blues', 'password': '1234567'}
         r = requests.post('http://127.0.0.1:5000/login', data=json.dumps(data),
                           headers={'Content-Type': 'application/json'})
-        self.assertEqual(r.status_code,401,'登陆失败失败')
+        self.assertEqual(r.status_code,403,'登陆失败失败')
 
     def test_login3(self):
         data = {'username': 'x', 'password': '123456'}
         r = requests.post('http://127.0.0.1:5000/login', data=json.dumps(data),
                           headers={'Content-Type': 'application/json'})
-        self.assertEqual(r.status_code,401,'登陆失败失败')
+        self.assertEqual(r.status_code,403,'登陆失败失败')
 
     def test_login4(self):
         data = {'password': '123456'}

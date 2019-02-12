@@ -98,15 +98,19 @@ class Role(db.Model):
     __tablename__ = 'roles'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(32), index=True,nullable=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    permission_id = db.relationship('Permission', secondary='role_permissions', backref='Role')
+    # user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    permission = db.relationship('Permission', secondary='role_permission', backref='Role')
 
     def __repr__(self):
         return '<Role %s>'%self.name
 
+    def __init__(self,name):
+        self.name=name
+
+
 
 class RolePermissons(db.Model):
-    __tablename__ = 'role_permissions'
+    __tablename__ = 'role_permission'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
     permission_id = db.Column(db.Integer, db.ForeignKey('permissions.id'))
@@ -116,6 +120,11 @@ class Permission(db.Model):
     __tablename__ = 'permissions'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(32), unique=True, nullable=False)
+    parent_id = db.Column(db.Integer, db.ForeignKey("permissions.id"))
 
     def __repr__(self):
         return '<Permission %s>' % self.name
+
+    def __init__(self,name,parent_id=None):
+        self.name=name
+        self.parent_id=parent_id
