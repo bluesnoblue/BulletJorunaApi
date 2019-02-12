@@ -8,12 +8,16 @@ token = r.json()['access_token']
 headers = {'Authorization': 'jwt ' + token}
 
 
-data = {'name':'test','permissions':'7,8,9'}
+data = {'name':'root','permissions':'1'}
 r = requests.post('http://127.0.0.1:5000/roles',data=data,headers=headers)
 print(r.status_code)
 print(r.json())
 
-r = requests.get('http://127.0.0.1:5000/roles',data=data,headers=headers)
+# r = requests.get('http://127.0.0.1:5000/roles',data=data,headers=headers)
+# print(r.status_code)
+# print(r.json())
+
+r = requests.delete('http://127.0.0.1:5000/role/4',data=data,headers=headers)
 print(r.status_code)
 print(r.json())
 

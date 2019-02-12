@@ -37,8 +37,18 @@ class Role(Resource):
 
     @jwt_required()
     def get(self,role_id):
-        return jsonify({'message': 'get Role%s'%role_id})
+        r = models.Role.query.filter_by(id=role_id).first()
+        return jsonify({'id': r.id, 'name': r.name})
 
     @jwt_required()
     def delete(self,role_id):
-        return  jsonify({'message': 'delete Role%s'%role_id})
+        role = models.Role.query.filter_by(id=role_id).first()
+        rps = models.RolePermissons.query.filter_by(role_id=role_id).all()
+        if not role:
+            abort(400)
+        # print(role)
+        db.session.delete(role)
+        for rp in rps:
+            db.session.delete(rp)
+        db.session.commit()
+        return 204
