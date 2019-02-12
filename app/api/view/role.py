@@ -3,6 +3,7 @@ from flask_restful import Resource
 from flask_jwt import jwt_required
 from app import db,models
 
+
 class Roles(Resource):
 
     @jwt_required()
