@@ -1,7 +1,7 @@
 from flask import jsonify
 from flask_restful import Resource
 from flask_jwt import jwt_required, current_identity
-from app.public.permission import *
+# from app.public.permission import *
 
 
 class ResourcesTest(Resource):

@@ -35,13 +35,25 @@ def create_app():
     from app.bullet import bp as bullet_bp
     app.register_blueprint(bullet_bp)
 
+    from app.resource import bp as res_bp
     from app.resource.routes import ResourcesTest, ResourceTest
+    api.init_app(res_bp)
     api.add_resource(ResourcesTest, '/resources')
     api.add_resource(ResourceTest, '/resource/<resource_id>')
-
-    from app.resource import bp as res_bp
-    api.init_app(res_bp)
     app.register_blueprint(res_bp)
+
+    from app.permission import bp as permission_bp
+    from app.permission.routes import Permissions
+    api.init_app(permission_bp)
+    api.add_resource(Permissions, '/permissions')
+    app.register_blueprint(permission_bp)
+
+    from app.role import bp as role_bp
+    from app.role.routes import Roles,Role
+    api.init_app(role_bp)
+    api.add_resource(Roles, '/roles')
+    api.add_resource(Role, '/role/<role_id>')
+    app.register_blueprint(role_bp)
 
     return app
 
