@@ -13,7 +13,7 @@ db = SQLAlchemy()
 migrate = Migrate()
 # api = Api()
 
-admin = Admin(name='后台管理系统',template_mode='bootstrap3')
+admin = Admin(name='后台管理系统', template_mode='bootstrap3')
 login = LoginManager()
 login.login_view = 'auth.login'
 login.login_message = 'Please log in to access this page.'

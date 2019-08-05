@@ -62,7 +62,7 @@ class User(db.Model, UserMixin):
 
 class Bullet(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    timestamp = db.Column(db.DateTime, index=True)
+    timestamp = db.Column(db.Integer, index=True)
     bullet_type = db.Column(db.Integer)  # 任务 1事件 2记录
     status = db.Column(db.Integer, default=0)  # 0未完成 1已完成 2已取消 3已推迟
     content = db.Column(db.String(32))
@@ -76,7 +76,7 @@ class Bullet(db.Model):
         self.timestamp = timestamp
 
     def __repr__(self):
-        return '<Bullet %s form user_%s>' % (self.body, self.user_id)
+        return '<Bullet %s form user_%s>' % (self.content, self.user_id)
 
     def update_body(self, content):
         self.content = content
@@ -84,14 +84,17 @@ class Bullet(db.Model):
     def set_timestamp(self, timestamp):
         self.timestamp = timestamp
 
+    def finish(self):
+        self.status = 1
+
     def reopen(self):
-        pass
+        self.status = 0
 
     def cancel(self):
-        pass
+        self.status = 2
 
     def delay(self):
-        pass
+        self.status = 3
 
 
 class ToDo(db.Model):
