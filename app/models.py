@@ -4,7 +4,7 @@ from flask_login import UserMixin
 from datetime import datetime
 
 
-class AdminUser(db.Model,UserMixin):
+class AdminUser(db.Model, UserMixin):
     __tablename__ = 'admin_users'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(16), index=True, unique=True)
@@ -28,7 +28,7 @@ class AdminUser(db.Model,UserMixin):
         return check_password_hash(self.password_hash, password)
 
 
-class User(db.Model,UserMixin):
+class User(db.Model, UserMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(16), index=True, unique=True)
@@ -62,27 +62,24 @@ class User(db.Model,UserMixin):
 
 class Bullet(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    bullet_type = db.Column(db.Integer)  # 任务 1事件 2记录
-    status = db.Column(db.Integer, default=0)  # 0未完成 1已完成 2延后
-    body = db.Column(db.String(32))
     timestamp = db.Column(db.DateTime, index=True)
-    mark = db.Column(db.Integer)
+    bullet_type = db.Column(db.Integer)  # 任务 1事件 2记录
+    status = db.Column(db.Integer, default=0)  # 0未完成 1已完成 2已取消 3已推迟
+    content = db.Column(db.String(32))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
-    def __init__(self, bullet_type, body, user_id):
+    def __init__(self, bullet_type, content, user_id, timestamp):
         self.status = 0
         self.bullet_type = bullet_type
-        self.body = body
+        self.content = content
         self.user_id = user_id
+        self.timestamp = timestamp
 
     def __repr__(self):
         return '<Bullet %s form user_%s>' % (self.body, self.user_id)
 
-    def update_mark(self):
-        self.mark = (self.mark + 1) % 3
-
-    def update_body(self):
-        self.body = (self.mark + 1) % 3
+    def update_body(self, content):
+        self.content = content
 
     def set_timestamp(self, timestamp):
         self.timestamp = timestamp
@@ -106,7 +103,6 @@ class Role(db.Model):
 
     def __init__(self,name):
         self.name=name
-
 
 
 class RolePermissons(db.Model):

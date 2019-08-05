@@ -20,10 +20,11 @@ def get_bullets():
 @bp.route('/bullets', methods=['POST'])
 @jwt_required()
 def post_bullet():
-    body = request.form.get('body')
+    content = request.form.get('content')
     bullet_type = request.form.get('type')
     user_id = current_identity.id
-    bullet = Bullet(bullet_type, body, user_id)
+    timestamp = 0
+    bullet = Bullet(bullet_type, content, user_id, timestamp)
     db.session.add(bullet)
     db.session.commit()
     return jsonify({
@@ -34,6 +35,35 @@ def post_bullet():
         'time': bullet.timestamp,
     }), 201
 
+
+@bp.route('/bullet/<bullet_id>', methods=['PATCH'])
+@jwt_required()
+def update_bullet():
+    return 204
+
+
+@bp.route('/bullet/<bullet_id>', methods=['DELETE'])
+@jwt_required()
+def update_bullet():
+    return 204
+
+
+@bp.route('/bullet/<bullet_id>/reopen', methods=['POST'])
+@jwt_required()
+def update_bullet():
+    return 204
+
+
+@bp.route('/bullet/<bullet_id>/delay', methods=['POST'])
+@jwt_required()
+def delay_bullet():
+    return 204
+
+
+@bp.route('/bullet/<bullet_id>/cancel', methods=['POST'])
+@jwt_required()
+def cancel_bullet():
+    return 204
 
 
 
