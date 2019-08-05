@@ -84,6 +84,15 @@ class Bullet(db.Model):
     def set_timestamp(self, timestamp):
         self.timestamp = timestamp
 
+    def reopen(self):
+        pass
+
+    def cancel(self):
+        pass
+
+    def delay(self):
+        pass
+
 
 class ToDo(db.Model):
     id = db.Column(db.Integer, primary_key=True)

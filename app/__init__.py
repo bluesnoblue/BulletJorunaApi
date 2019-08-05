@@ -18,6 +18,7 @@ login = LoginManager()
 login.login_view = 'auth.login'
 login.login_message = 'Please log in to access this page.'
 
+
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
@@ -38,11 +39,11 @@ def create_app():
     from app.api import api
     app.register_blueprint(api)
 
-
     return app
+
 
 from app import models
 
-admin.add_view(MyView(name='页面1',category = '菜单项目'))
-admin.add_view(UserView(models.User, db.session, name='用户列表',category = '用户管理'))
+admin.add_view(MyView(name='页面1', category='菜单项目'))
+admin.add_view(UserView(models.User, db.session, name='用户列表', category='用户管理'))
 admin.add_view(AdminUserView(models.AdminUser, db.session, name='管理员'))

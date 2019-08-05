@@ -2,6 +2,7 @@ import requests
 import unittest
 import json
 
+
 class TestAuth(unittest.TestCase):
 
     def test_register2(self):

@@ -4,6 +4,7 @@ from flask_jwt import jwt_required
 from app.models import Permission
 from app import db
 
+
 class Permissions(Resource):
 
     @jwt_required()
