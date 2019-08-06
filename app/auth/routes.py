@@ -34,4 +34,4 @@ def get_profile():
         'name': current_identity.username,
         'email': current_identity.email,
         'mobile': current_identity.mobile
-    }), 201
+    }), 200
